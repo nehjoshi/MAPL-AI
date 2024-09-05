@@ -1,3 +1,3 @@
-# Lama Dev AI Chat Bot App Starter Setup
-
-This template provides a minimal setup to get React 19 working in Vite with HMR and some ESLint rules.
+# MAPL AI
+### Supercharge your creativity and productivity
+MAPL AI is an advanced AI-driven platform designed to enhance your creative potential and boost productivity.
