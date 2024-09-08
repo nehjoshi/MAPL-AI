@@ -48,15 +48,12 @@ export const NewPrompt = () => {
       {result && <div className="message"><Markdown>{result}</Markdown></div>}
       <div className="endChat" ref={endRef}></div>
       <form className="newForm" onSubmit={handleSubmit}>
-        {/* <label htmlFor="file">
-                <img src="/attachment.png" alt='' />
-            </label> */}
         <Upload setImg={setImg} />
         <input id="file" type="file" multiple={false} hidden />
-        <input type="text" name="prompt" placeholder="Ask me anything..." />
+        <input autoComplete="off" type="text" name="prompt" placeholder="Ask me anything..." />
         <button>
           <img src="/arrow.png" alt="" />
-        </button>
+        </button> 
       </form>
     </>
   )
