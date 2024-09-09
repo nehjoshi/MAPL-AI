@@ -5,6 +5,19 @@ export const DashboardPage = () => {
 
   const [input, setInput] = useState("");
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    await fetch("http://localhost:5000/api/chats", {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        text: input
+      })
+    })
+  }
+
   return (
     <div className='dashboardPage'>
       <div className="texts">
@@ -28,7 +41,7 @@ export const DashboardPage = () => {
         </div>
       </div>
       <div className="formContainer">
-        <form>
+        <form onSubmit={handleSubmit}>
           <input onChange={e => setInput(e.target.value)} type="text" placeholder='Ask me anything...' />
           <button disabled={input.length === 0}>
             <img src="/arrow.png" alt="" />

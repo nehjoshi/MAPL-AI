@@ -12,16 +12,28 @@ export const NewPrompt = () => {
   const [img, setImg] = useState({
     isLoading: false,
     error: "",
-    dbData: {}
-  })
+    dbData: {},
+    aiData: {}
+  });
 
   useEffect(() => {
     endRef.current.scrollIntoView({ behavior: "smooth" });
-  }, [])
+  }, [result, userPrompt, img]);
 
   const runModel = async (text) => {
-    const result = await model.generateContent(text);
-    setResult(result.response.text());
+    const result = await model.generateContentStream(Object.entries(img.aiData).length ? [img.aiData, text]: [text]);
+    let resultText = ""
+    for await (const chunk of result.stream) {
+      const chunkText = chunk.text();
+      resultText += chunkText;
+      setResult(resultText);
+    }
+    setImg({
+      isLoading: false,
+      error: "",
+      dbData: {},
+      aiData: {}
+    });
   }
 
   const handleSubmit = async (e) => {
